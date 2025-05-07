@@ -16,6 +16,9 @@ public class Liquor extends Beverage {
     private double ounces;
 
     @Column(nullable = false)
+    private double pricePerOunce;
+
+    @Column(nullable = false)
     private double proof;
 
 
