@@ -2,6 +2,8 @@ package com.jspsolutions.beverageoperations.controllers;
 
 import com.jspsolutions.beverageoperations.entities.beers.Beer;
 import com.jspsolutions.beverageoperations.services.BeerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +26,16 @@ public class BeerController {
     @PostMapping
     public Beer addBeer(@RequestBody Beer beer) {
         return beerService.saveBeer(beer);
+    }
+
+    @DeleteMapping("/beer")
+    public ResponseEntity<String> removeBeer(@PathVariable Long id) {
+        try {
+            beerService.removeBeer(id);
+            return ResponseEntity.ok("Beer removed successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+
     }
 }

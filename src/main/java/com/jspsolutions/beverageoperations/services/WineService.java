@@ -23,4 +23,13 @@ public class WineService {
     public Wine saveWine(Wine wine) {
         return wineRepository.save(wine);
     }
+
+    public void removeWine(Long wineId) {
+        if(wineRepository.existsById(wineId)) {
+            wineRepository.deleteById(wineId);
+        }
+        else{
+            throw new RuntimeException("Wine not found");
+        }
+    }
 }

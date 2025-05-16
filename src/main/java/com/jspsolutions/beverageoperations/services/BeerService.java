@@ -23,4 +23,13 @@ public class BeerService {
     public Beer saveBeer(Beer beer){
         return beerRepository.save(beer);
     }
+
+    public void removeBeer(Long beerId) {
+        if(beerRepository.existsById(beerId)) {
+            beerRepository.deleteById(beerId);
+        }
+        else {
+            throw new RuntimeException("Beer not found.");
+        }
+    }
 }
