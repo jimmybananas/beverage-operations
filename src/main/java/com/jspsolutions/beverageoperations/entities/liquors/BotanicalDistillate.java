@@ -2,6 +2,7 @@ package com.jspsolutions.beverageoperations.entities.liquors;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -12,5 +13,6 @@ import lombok.*;
 public class BotanicalDistillate extends Liquor{
 
     @Column(nullable = false)
-    private int age;
+    @NotBlank(message = "Botanical Type cannot be blank")
+    private BotanicalType botanicalType;
 }
